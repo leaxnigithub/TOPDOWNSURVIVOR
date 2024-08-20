@@ -12,6 +12,7 @@ var d = 0.0
 @export var acceleration = 20
 @export var FRICTION = 5
 @onready var arrow = $arrow
+const bullet = preload("res://scenes/bullet.tscn")
 
 func _physics_process(delta) -> void:
 	var global_dir := get_local_mouse_position() - to_local(global_position)
@@ -56,4 +57,4 @@ func _on_mouse_area_mouse_entered():
 	else:
 		queue_free()
 		
-func
+func shoot():
