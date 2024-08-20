@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://l0t2tfck3a3u"]
+
+[ext_resource type="Script" path="res://area_2d.gd" id="1_xb4pg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6bff"]
+size = Vector2(404, 255)
+
+[node name="random" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_xb4pg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(593, 290)
+shape = SubResource("RectangleShape2D_m6bff")
+
+[connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
