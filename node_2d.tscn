@@ -1416,15 +1416,10 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_26pph")
 sources/1 = SubResource("TileSetAtlasSource_u2yld")
 
-[node name="world" type="Node2D"]
+[node name="Player" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_boq2k")
-radius = null
-speed = null
-SPEED = null
-acceleration = null
-FRICTION = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_p5q5m")

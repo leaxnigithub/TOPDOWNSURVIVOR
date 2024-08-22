@@ -12,7 +12,8 @@ var d = 0.0
 @export var acceleration = 20
 @export var FRICTION = 5
 @onready var arrow = $arrow
-const bullet = preload("res://scenes/bullet.tscn")
+const BULLET = preload('res://scenes/bullet.tscn')
+@onready var world = get_node('/root/world')
 
 func _physics_process(delta) -> void:
 	var global_dir := get_local_mouse_position() - to_local(global_position)
@@ -23,7 +24,8 @@ func _physics_process(delta) -> void:
 		global_dir.normalized()
 	# 3. place the constrained object at the calculated position
 	arrow.global_position = global_position - global_dir
-	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 	direction = Input.get_vector("left", "right", "up", "down"). normalized()
 	if direction:
 		velocity = velocity.move_toward(SPEED * direction, acceleration)
@@ -43,13 +45,6 @@ func update_blend_position():
 	animationtree["parameters/IDLE/blend_position"] = direction
 	animationtree["parameters/WALK/blend_position"] = direction
 	
-func shoot():
-	var mousepos = get_global_mouse_position()
-	if Input.is_action_just_pressed("shoot"):
-		arrow.look_at(mousepos)
-		
-
-
 func _on_mouse_area_mouse_entered():
 	var mousepos = get_local_mouse_position()
 	if mouse_entered:
@@ -58,3 +53,7 @@ func _on_mouse_area_mouse_entered():
 		queue_free()
 		
 func shoot():
+	var bulletshot = BULLET.instantiate()
+	bulletshot.global_position = global_position
+	world.add_child(bulletshot)
+	print("bullet is shot")
