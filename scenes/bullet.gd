@@ -1,11 +1,12 @@
-extends Sprite2D
+extends Area2D
+@onready var player: CharacterBody2D = $player
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@export var speed = 10
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _ready() -> void:
 	pass
+	
+func _process(delta):
+	translate(Vector2.RIGHT.angle() * speed * delta)
+	print
 	

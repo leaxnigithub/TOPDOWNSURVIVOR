@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://by7vmiu0pc7mu"]
+[gd_scene load_steps=4 format=3 uid="uid://by7vmiu0pc7mu"]
 
+[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_fw428"]
 [ext_resource type="Texture2D" uid="uid://l0k4de4x60pp" path="res://icon.svg" id="2_ktt1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc6ko"]
 
 [node name="bullet" type="Area2D"]
+script = ExtResource("1_fw428")
+speed = 60
 
 [node name="bullethitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(0.675, 0.675)
