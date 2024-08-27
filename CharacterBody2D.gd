@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-
+@onready var timer: Timer = $Timer
 @export var radius = 50.0 
-@export var speed = 2.0
+@export var speed = 20.0
 @onready var player = $"."
 @onready var mouse_area: Area2D = $mouse_area
 @onready var dashtimer = $dashtimer
@@ -21,7 +21,7 @@ func _physics_process(delta) -> void:
 	if global_dir.length() > radius:
 		global_dir = radius * global_dir.normalized()
 	else:
-		global_dir.normalized()
+		global_dir = radius * global_dir.normalized()
 	# 3. place the constrained object at the calculated position
 	arrow.global_position = global_position - global_dir
 		
@@ -38,8 +38,9 @@ func _physics_process(delta) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		var bulletshot = BULLET.instantiate()
 		bulletshot.global_position = global_position
-		world.add_child(bulletshot)
-		
+		bulletshot.bullet_direction = -(to_local(position) - get_local_mouse_position().normalized() * speed)
+		get_parent().add_child(bulletshot)
+		 
 func set_walking(value):
 	animationtree["parameters/conditions/is_walking"] = value
 	animationtree["parameters/conditions/idle"] = not value
@@ -54,5 +55,4 @@ func _on_mouse_area_mouse_entered():
 		print(mousepos)
 	else:
 		queue_free()
-		
 		

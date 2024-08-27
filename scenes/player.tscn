@@ -371,9 +371,6 @@ animations = [{
 radius = 7.0
 height = 42.71
 
-[sub_resource type="Animation" id="Animation_kk1qe"]
-resource_name = "RUN"
-
 [sub_resource type="Animation" id="Animation_c2y1s"]
 length = 0.8
 loop_mode = 1
@@ -597,6 +594,9 @@ tracks/1/keys = {
 "update": 1,
 "values": ["N_idle"]
 }
+
+[sub_resource type="Animation" id="Animation_kk1qe"]
+resource_name = "RUN"
 
 [sub_resource type="Animation" id="Animation_5g153"]
 length = 0.8
@@ -957,7 +957,7 @@ script = ExtResource("1_sdx5f")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r4jxn")
-animation = &"EAST"
+animation = &"E_idle"
 speed_scale = 2.0
 
 [node name="collision" type="CollisionShape2D" parent="."]
