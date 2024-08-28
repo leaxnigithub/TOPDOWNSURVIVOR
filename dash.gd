@@ -14,8 +14,7 @@ func is_dashing():
 	
 func end_dash():
 	can_dash = false
-	await(get_tree().create_timer(dash_delay).call('timeout')
-
+	await(get_tree().create_timer(dash_delay).timeout)
 
 func _on_dashtimer_timeout():
 	end_dash()

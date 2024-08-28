@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_sdx5f"]
 [ext_resource type="Texture2D" uid="uid://bb1bk5xw35isv" path="res://assets/spritesheet_50x50.png" id="2_te6vs"]
-[ext_resource type="Texture2D" uid="uid://8sxt2b0q43b3" path="res://kisspng-smiley-happiness-circle-cartoon-treaty-cliparts-5a88897218fad7.4484286615188975221023.jpg" id="3_26ohh"]
+[ext_resource type="Texture2D" uid="uid://dvkscr8jdwgxp" path="res://assets/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTA0L3JtMTg5My1lbGVtZW50LTAwMS5wbmc.webp" id="3_mngr1"]
+[ext_resource type="PackedScene" uid="uid://ckd0un8h13ex0" path="res://scenes/dash.tscn" id="4_o4hoa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmdom"]
 atlas = ExtResource("2_te6vs")
@@ -927,33 +928,33 @@ blend_point_6/node = SubResource("AnimationNodeAnimation_utqig")
 blend_point_6/pos = Vector2(-1, -1)
 blend_point_7/node = SubResource("AnimationNodeAnimation_nm8mv")
 blend_point_7/pos = Vector2(1, -1)
+blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hjw74"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7m1y"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rkiwr"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jp2cj"]
 advance_mode = 2
 advance_condition = &"is_walking"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m11fl"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2wuup"]
 advance_mode = 2
 advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6hkd0"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ehlg5"]
 states/IDLE/node = SubResource("AnimationNodeBlendSpace2D_gmiau")
 states/IDLE/position = Vector2(407, 99)
 states/RUN/node = SubResource("AnimationNodeBlendSpace2D_2segm")
-states/RUN/position = Vector2(571, 100)
-transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_hjw74"), "IDLE", "RUN", SubResource("AnimationNodeStateMachineTransition_rkiwr"), "RUN", "IDLE", SubResource("AnimationNodeStateMachineTransition_m11fl"), "RUN", "End", SubResource("AnimationNodeStateMachineTransition_6hkd0")]
+states/RUN/position = Vector2(640, 100)
+states/Start/position = Vector2(202, 100)
+transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_v7m1y"), "IDLE", "RUN", SubResource("AnimationNodeStateMachineTransition_jp2cj"), "RUN", "IDLE", SubResource("AnimationNodeStateMachineTransition_2wuup")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cidrk"]
 radius = 85.3288
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_sdx5f")
+speed = 10
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r4jxn")
@@ -976,7 +977,7 @@ anim_player = NodePath("../animation_editor")
 parameters/conditions/idle = false
 parameters/conditions/is_walking = false
 parameters/IDLE/blend_position = Vector2(0.603517, -0.159292)
-parameters/RUN/blend_position = Vector2(0.0247802, 0.00884962)
+parameters/RUN/blend_position = Vector2(-0.00719422, 0.0106382)
 
 [node name="camera" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -984,7 +985,8 @@ zoom = Vector2(3, 3)
 [node name="arrow2" type="Sprite2D" parent="."]
 position = Vector2(-9, -9)
 scale = Vector2(0.02, 0.02)
-texture = ExtResource("3_26ohh")
+texture = ExtResource("3_mngr1")
+flip_h = true
 
 [node name="mouse_area2" type="Area2D" parent="."]
 
@@ -994,3 +996,5 @@ shape = SubResource("CircleShape2D_cidrk")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="mouse_area2"]
 remote_path = NodePath("..")
+
+[node name="dash" parent="." instance=ExtResource("4_o4hoa")]

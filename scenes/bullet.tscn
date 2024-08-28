@@ -16,3 +16,8 @@ shape = SubResource("RectangleShape2D_fc6ko")
 [node name="bulletpicture" type="Sprite2D" parent="."]
 scale = Vector2(0.09, 0.09)
 texture = ExtResource("2_ktt1r")
+
+[node name="bullettimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="bullettimer" to="." method="_on_bullettimer_timeout"]
