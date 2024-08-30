@@ -980,7 +980,7 @@ parameters/IDLE/blend_position = Vector2(0.603517, -0.159292)
 parameters/RUN/blend_position = Vector2(-0.00719422, 0.0106382)
 
 [node name="camera" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2.31, 2.31)
 
 [node name="arrow2" type="Sprite2D" parent="."]
 position = Vector2(-9, -9)

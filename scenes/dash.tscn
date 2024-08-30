@@ -6,5 +6,7 @@
 script = ExtResource("1_2d4um")
 
 [node name="dashtimer" type="Timer" parent="."]
+wait_time = 1.043
+one_shot = true
 
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]

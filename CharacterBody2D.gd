@@ -1,24 +1,27 @@
 extends CharacterBody2D
-const dashspeed = 500.0
-const time = 0.3
+const dashspeed = 5000.0
+const time = 0.25
 @export var radius = 50.0 
 @export var speed := 20
 @onready var player = $"."
 @onready var mouse_area: Area2D = $mouse_area
 @onready var animationtree = $animation_sorter
 @onready var direction = Vector2.ZERO
-@export var SPEED = 100.0
+@export var SPEED = 150.0
 @export var acceleration = 20
-@export var FRICTION = 5
+@export var FRICTION = 7
 @onready var arrow := $arrow2
 const BULLET = preload("res://scenes/bullet.tscn")
 @onready var world = get_node('/root/world')
-@onready var dash: Node2D = $dash
+@onready var dash = $dash
+
 
 func _physics_process(delta) -> void:
 	
-	if Input.is_action_just_pressed("dash"):
-		dash.start
+	if Input.is_action_just_pressed("dash") and dash.can_dash and !dash.is_dashing():
+		dash.start_dash(time)
+		print("dash")
+		
 	if Input.is_action_just_pressed("shoot"):
 		shoot(delta)
 		
@@ -31,10 +34,12 @@ func _physics_process(delta) -> void:
 	# 3. place the constrained object at the calculated position
 	arrow.global_position = global_position - global_dir
 	arrow.look_at(position)
-		
+	
+	var Speed = dashspeed if dash.is_dashing() else SPEED
+	
 	direction = Input.get_vector("left", "right", "up", "down"). normalized()
 	if direction:
-		velocity = velocity.move_toward(SPEED * direction, acceleration)
+		velocity = velocity.move_toward(Speed * direction, acceleration) 
 		set_walking(true)
 		update_blend_position()
 	else:
