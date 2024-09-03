@@ -952,7 +952,7 @@ transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_cidrk"]
 radius = 85.3288
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_sdx5f")
 speed = 10
 
@@ -982,7 +982,7 @@ parameters/RUN/blend_position = Vector2(-0.00719422, 0.0106382)
 [node name="camera" type="Camera2D" parent="."]
 zoom = Vector2(2.31, 2.31)
 
-[node name="arrow2" type="Sprite2D" parent="."]
+[node name="arrow2" type="Sprite2D" parent="." groups=["player"]]
 position = Vector2(-9, -9)
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("3_mngr1")

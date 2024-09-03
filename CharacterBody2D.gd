@@ -14,7 +14,7 @@ const time = 0.25
 const BULLET = preload("res://scenes/bullet.tscn")
 @onready var world = get_node('/root/world')
 @onready var dash = $dash
-
+const ENEMY = preload("res://scenes/enemy.tscn")
 
 func _physics_process(delta) -> void:
 	
@@ -67,4 +67,4 @@ func shoot(delta):
 		bulletshot.global_position = global_position
 		bulletshot.bullet_direction = -(to_local(position) - get_local_mouse_position().normalized() * speed)
 		get_parent().add_child(bulletshot) 
-	
+		
