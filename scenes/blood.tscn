@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://cjkdw3r8xohcp"]
+
+[ext_resource type="Texture2D" uid="uid://8ejtqtvulewf" path="res://assets/NEw pack blood/NEw pack blood/1_100x100px.png" id="1_wj74y"]
+[ext_resource type="Script" path="res://scenes/blood.gd" id="2_jysgx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bilnw"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2rhb"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn2vv"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apq8k"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww6q4"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdb0a"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(400, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0alsa"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(500, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bivf2"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(200, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg1j2"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tgs6"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(400, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3jhi"]
+atlas = ExtResource("1_wj74y")
+region = Rect2(500, 200, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lavce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bilnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2rhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn2vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apq8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww6q4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdb0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0alsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bivf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg1j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tgs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3jhi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="blood" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_lavce")
+autoplay = "default"
+frame = 10
+frame_progress = 1.0
+script = ExtResource("2_jysgx")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

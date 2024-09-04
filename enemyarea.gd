@@ -1,6 +1,8 @@
 extends CharacterBody2D
-const SPEED := 20.0
-
+@export var SPEED := 20
+const TIMER = 2
+const BLOOD = preload("res://scenes/blood.tscn")
+@export var health = 10
 @onready var enemy : Sprite2D = $sprite
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var timer = $area/damagetimer
@@ -23,5 +25,19 @@ func check_player():
 		for collision in collisions:
 			if collision.is_in_group("player") and timer.is_stopped():
 				print("hit!")
+				
 	else:
 		return
+
+func take_damage(damage):
+	var tween = get_tree().create_tween()
+	tween.tween_property(self,"modulate:a", 0, 0.03 )
+	tween.tween_property(self,"modulate:s", 100, 0.03 )
+	tween.tween_property(self,"modulate:a", 1, 0.05)
+	tween.tween_property(self,"modulate:s", 0, 0.01)
+	health -= damage
+	if health <= 0:
+		queue_free()
+		var bloodspill = BLOOD.instantiate()
+		bloodspill.global_position = global_position
+		add_sibling(bloodspill)

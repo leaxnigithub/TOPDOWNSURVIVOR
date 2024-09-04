@@ -8,8 +8,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mc584"]
 radius = 64.4981
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_qfumk")
+SPEED = 50
 
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.035, 0.035)
@@ -23,5 +24,6 @@ shape = SubResource("RectangleShape2D_gwywr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
 shape = SubResource("CircleShape2D_mc584")
+debug_color = Color(0, 0.6, 0.701961, 0.141176)
 
 [node name="damagetimer" type="Timer" parent="area"]

@@ -2,7 +2,7 @@ extends Area2D
 @onready var player: CharacterBody2D = $player
 @onready var bullettimer: Timer = $bullettimer
 @export var speed = 100
-
+@export var dmg = 2
 var delaybetweenshots := 0.4
 var bullet_direction
 var can_shoot = true
@@ -25,5 +25,8 @@ func end_time():
 	await(get_tree().create_timer(delaybetweenshots).timeout)
 	can_shoot = true
 	
-func _on_bullettimer_timeout() -> void:
-	end_time()
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy") and body.has_method("take_damage"):
+		body.take_damage(dmg)
+		queue_free()
