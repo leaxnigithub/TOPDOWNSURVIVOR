@@ -6,6 +6,7 @@ const BLOOD = preload("res://scenes/blood.tscn")
 @onready var enemy : Sprite2D = $sprite
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var timer = $area/damagetimer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -24,7 +25,10 @@ func check_player():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("player") and timer.is_stopped():
+				timer.start()
 				print("hit!")
+				player.damage_player
+				
 				
 	else:
 		return

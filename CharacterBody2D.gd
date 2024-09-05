@@ -1,6 +1,7 @@
 extends CharacterBody2D
 const dashspeed = 5000.0
 const time = 0.25
+var health = 20
 @export var radius = 50.0 
 @export var speed := 20
 @onready var player = $"."
@@ -16,14 +17,19 @@ const BULLET = preload("res://scenes/bullet.tscn")
 @onready var dash = $dash
 const ENEMY = preload("res://scenes/enemy.tscn")
 
+@onready var timer: Timer = $Timer
+
+
 func _physics_process(delta) -> void:
 	
 	if Input.is_action_just_pressed("dash") and dash.can_dash and !dash.is_dashing():
 		dash.start_dash(time)
 		print("dash")
 		
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and timer.is_stopped():
+		timer.start()
 		shoot(delta)
+		arrow.animation_finished
 		
 	var global_dir := get_local_mouse_position() - to_local(global_position) * 10
 	# 2. constraint this position to the radius if it is too big
@@ -68,3 +74,18 @@ func shoot(delta):
 		bulletshot.bullet_direction = -(to_local(position) - get_local_mouse_position().normalized() * speed)
 		get_parent().add_child(bulletshot) 
 		
+		
+func damage_player(damage):
+	damage = 2
+	health -= damage
+	print(health)
+	if health <= 0:
+		queue_free()
+	
+
+
+func _on_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy") and body.has_method("damage_player"):
+		player.damage_player()
+	
+	
