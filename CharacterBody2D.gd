@@ -2,6 +2,8 @@ extends CharacterBody2D
 const dashspeed = 5000.0
 const time = 0.25
 var health = 20
+
+@onready var target: Marker2D = $Marker2D
 @export var radius = 50.0 
 @export var speed := 20
 @onready var player = $"."
@@ -26,10 +28,12 @@ func _physics_process(delta) -> void:
 		dash.start_dash(time)
 		print("dash")
 		
-	if Input.is_action_just_pressed("shoot") and timer.is_stopped():
+	if Input.is_action_just_pressed("shoot") and timer.is_stopped() and arrow.animation_finished:
 		timer.start()
 		shoot(delta)
-		arrow.animation_finished
+		arrow.play()
+		
+		
 		
 	var global_dir := get_local_mouse_position() - to_local(global_position) * 10
 	# 2. constraint this position to the radius if it is too big
@@ -40,6 +44,7 @@ func _physics_process(delta) -> void:
 	# 3. place the constrained object at the calculated position
 	arrow.global_position = global_position - global_dir
 	arrow.look_at(position)
+	target.global_position = global_position - global_dir
 	
 	var Speed = dashspeed if dash.is_dashing() else SPEED
 	
@@ -70,7 +75,7 @@ func _on_mouse_area_mouse_entered():
 		
 func shoot(delta):
 		var bulletshot = BULLET.instantiate()
-		bulletshot.global_position = global_position
+		bulletshot.global_position = target.global_position
 		bulletshot.bullet_direction = -(to_local(position) - get_local_mouse_position().normalized() * speed)
 		get_parent().add_child(bulletshot) 
 		
@@ -87,5 +92,4 @@ func damage_player(damage):
 func _on_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy") and body.has_method("damage_player"):
 		player.damage_player()
-	
 	

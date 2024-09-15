@@ -949,9 +949,9 @@ states/RUN/position = Vector2(640, 100)
 states/Start/position = Vector2(202, 100)
 transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_v7m1y"), "IDLE", "RUN", SubResource("AnimationNodeStateMachineTransition_jp2cj"), "RUN", "IDLE", SubResource("AnimationNodeStateMachineTransition_2wuup")]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rv75w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj8v6"]
 atlas = ExtResource("3_6u43w")
-region = Rect2(16, 16, 16, 16)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3f82"]
 atlas = ExtResource("3_6u43w")
@@ -961,15 +961,15 @@ region = Rect2(0, 16, 16, 16)
 atlas = ExtResource("3_6u43w")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cj8v6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv75w"]
 atlas = ExtResource("3_6u43w")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nr0cn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rv75w")
+"texture": SubResource("AtlasTexture_cj8v6")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b3f82")
@@ -978,7 +978,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_5syav")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cj8v6")
+"texture": SubResource("AtlasTexture_rv75w")
 }],
 "loop": false,
 "name": &"default",
@@ -1022,9 +1022,6 @@ zoom = Vector2(2.31, 2.31)
 position = Vector2(17.15, 22.767)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_nr0cn")
-autoplay = "default"
-frame = 3
-frame_progress = 1.0
 flip_h = true
 
 [node name="area" type="Area2D" parent="."]
@@ -1042,4 +1039,7 @@ remote_path = NodePath("..")
 wait_time = 0.5
 one_shot = true
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[connection signal="animation_finished" from="arrow2" to="." method="_on_arrow_2_animation_finished"]
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
