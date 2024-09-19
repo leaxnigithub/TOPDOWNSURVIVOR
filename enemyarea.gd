@@ -1,12 +1,13 @@
 extends CharacterBody2D
-@export var SPEED := 20
+@export var SPEED := 10
 const TIMER = 2
 const BLOOD = preload("res://scenes/blood.tscn")
 @export var health = 10
 @onready var enemy : Sprite2D = $sprite
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var timer = $area/damagetimer
-
+const Playerstats = preload("res://singletons/Playerstats.gd")
+const DAMAGE = 5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -27,7 +28,7 @@ func check_player():
 			if collision.is_in_group("player") and timer.is_stopped():
 				timer.start()
 				print("hit!")
-				player.damage_player
+				get_tree().quit()
 				
 				
 	else:

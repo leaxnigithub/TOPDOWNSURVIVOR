@@ -986,7 +986,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cidrk"]
-radius = 42.0
+radius = 22.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_sdx5f")
@@ -1014,9 +1014,6 @@ parameters/conditions/idle = false
 parameters/conditions/is_walking = false
 parameters/IDLE/blend_position = Vector2(0.603517, -0.159292)
 parameters/RUN/blend_position = Vector2(-0.00719422, 0.0106382)
-
-[node name="camera" type="Camera2D" parent="."]
-zoom = Vector2(2.31, 2.31)
 
 [node name="arrow2" type="AnimatedSprite2D" parent="." groups=["player"]]
 position = Vector2(17.15, 22.767)

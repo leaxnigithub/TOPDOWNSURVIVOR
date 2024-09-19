@@ -2,7 +2,7 @@ extends CharacterBody2D
 const dashspeed = 5000.0
 const time = 0.25
 var health = 20
-
+@onready var tween = get_tree().create_tween()
 @onready var target: Marker2D = $Marker2D
 @export var radius = 50.0 
 @export var speed := 20
@@ -92,4 +92,4 @@ func damage_player(damage):
 func _on_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy") and body.has_method("damage_player"):
 		player.damage_player()
-	
+		
